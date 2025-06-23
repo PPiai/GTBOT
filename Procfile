@@ -1,1 +1,1 @@
-web: ls -laR
+web: streamlit run app.py
