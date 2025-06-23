@@ -13,10 +13,10 @@ class MetaAdsConfig:
     # OBJETIVOS DE CAMPANHA (ODAX prioritários)
     CAMPAIGN_OBJECTIVES = [
         # ODAX - Prioritários
-        "AWARENESS",      # Novo padrão Meta (substitui OUTCOME_AWARENESS)
-        "TRAFFIC",        # Novo padrão Meta (substitui OUTCOME_TRAFFIC) 
-        "ENGAGEMENT",     # Novo padrão Meta (substitui OUTCOME_ENGAGEMENT)
-        "LEADS",          # Novo padrão Meta (substitui OUTCOME_LEADS)
+        "OUTCOME_AWARENESS",      # Novo padrão Meta (substitui OUTCOME_AWARENESS)
+        "OUTCOME_TRAFFIC",        # Novo padrão Meta (substitui OUTCOME_TRAFFIC) 
+        "OUTCOME_ENGAGEMENT",     # Novo padrão Meta (substitui OUTCOME_ENGAGEMENT)
+        "OUTCOME_LEADS",          # Novo padrão Meta (substitui OUTCOME_LEADS)
         "REACH",          # Alcance máximo
         # Legados mantidos para compatibilidade
         "BRAND_AWARENESS",
