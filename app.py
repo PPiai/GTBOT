@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 import re
 from time import sleep
-from config import config  # Importa configuração centralizada
+import config
 
 # Set page config
 st.set_page_config(
