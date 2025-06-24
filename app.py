@@ -15,79 +15,178 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Add custom CSS
+# CSS global para forçar tema claro e corrigir todos os elementos
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 2.5rem;
-        font-weight: bold; 
-        font-color: #000000;
-        margin-bottom: 1rem;
-        color: #1877F2;
+    html, body, .stApp {
+        background-color: #fff !important;
     }
-    body {
-        background-color: white;
-        color: black;
+    .st-emotion-cache-seewz2 {
+        color: black !important;
+    }
+    /* Força tema claro em todos os elementos */
+    body[data-theme="dark"], .stApp[data-theme="dark"] {
+        background-color: #fff !important;
+        color: #111 !important;
+    }
+    [data-testid="stSidebar"] {
+        background-color: #e5e5e5 !important;
+    }
+    [data-testid="stSidebar"] * {
+        color: #111 !important;
+    }
+    [data-testid="stHeader"] {
+        background-color: #fff !important;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    [data-testid="stHeader"] * {
+        color: #111 !important;
+        fill: #111 !important;
+    }
+    /* Botões */
+    .stButton > button, button[data-baseweb="button"] {
+        background-color: #FF4B4B !important;
+        color: #fff !important;
+        font-color: #fff !important;
+        border: 1px solid #FF4B4B !important;
+        border-radius: 8px !important;
+        padding: 10px 24px !important;
+        font-weight: bold !important;
+    }
+    .stButton > button:hover, button[data-baseweb="button"]:hover {
+        background-color: #fff !important;
+        color: #FF4B4B !important;
+        font-color: #FF4B4B !important;
+        border: 1px solid #FF4B4B !important;
+    }
+    button[data-baseweb="button"] svg {
+        fill: #111 !important;
+    }
+    /* Selectbox, Dropdowns, Radio, Checkbox */
+    [data-testid="stSelectbox"] > div, [data-baseweb="select"] > div, .stRadio, .stCheckbox, .stRadio label, .stCheckbox label {
+        background-color: #fff !important;
+        color: #111 !important;
+        border: 1px solid #cccccc !important;
+        border-radius: 8px !important;
+    }
+    [data-testid="stSelectbox"] svg {
+        fill: #111 !important;
+    }
+    div[data-baseweb="popover"] ul[role="listbox"] {
+        background-color: #fff !important;
+        border: 1px solid #e0e0e0 !important;
+    }
+    div[data-baseweb="popover"] ul[role="listbox"] li {
+        color: #111 !important;
+    }
+    div[data-baseweb="popover"] ul[role="listbox"] li:hover {
+        background-color: #f0f2f6 !important;
+    }
+    /* Inputs de texto */
+    [data-testid="stTextInput"] input, [data-testid="stNumberInput"] input, textarea, [data-testid="stTextArea"] textarea {
+        background-color: #fff !important;
+        color: #111 !important;
+        border: 1px solid #cccccc !important;
+        border-radius: 8px !important;
+    }
+    /* Tabelas */
+    [data-testid="stDataGrid"], .stTable, table, th, td {
+        background-color: #fff !important;
+        color: #111 !important;
+        border-color: #e0e0e0 !important;
+    }
+    [data-testid="stDataGrid"] .glide-header-wrapper {
+        background-color: #f0f2f6 !important;
+    }
+    [data-testid="stDataGrid"] .glide-cell {
+        color: #111 !important;
+        background-color: #fff !important;
+    }
+    /* Abas (Tabs) */
+    div[data-baseweb="tab"] {
+        color: #111 !important;
+        font-weight: 500 !important;
+        background: #fff !important;
+        border: none !important;
+    }
+    div[data-baseweb="tab"][aria-selected="true"] {
+        color: #111 !important;
+        border-bottom: 2px solid #FF4B4B !important;
+        background: #fff !important;
+    }
+    /* Blocos de código */
+    code {
+        background-color: #e9ecef !important;
+        color: #495057 !important;
+        padding: 0.2rem 0.4rem !important;
+        border-radius: 4px !important;
+        border: 1px solid #ced4da !important;
+    }
+    /* Headers e textos customizados */
+    .main-header {
+        font-size: 2.5rem !important;
+        font-weight: bold !important;
+        margin-bottom: 1rem !important;
+        color: #111 !important;
     }
     .sub-header {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+        color: #111 !important;
     }
-    .stButton button {
-        background-color: #000000;
-        color: white;
-        border-radius: 5px;
-        padding: 0.5rem 1rem;
-        font-weight: bold;
-    }
-    .stButton button:hover {
-        background-color: #ffffff;
-        color: black;
-        border-radius: 5px;
-        border-color: #ff0000;
+    h1, h2, h3, h4, h5, h6, strong, b {
+        color: #111 !important;
     }
     .success-message {
-        background-color: #e6f7e6;
-        color: #2e7d32;
-        padding: 1rem;
-        border-radius: 4px;
-        margin-bottom: 1rem;
+        background-color: #e6f7e6 !important;
+        color: #2e7d32 !important;
+        padding: 1rem !important;
+        border-radius: 4px !important;
+        margin-bottom: 1rem !important;
     }
     .error-message {
-        background-color: #ffebee;
-        color: #c62828;
-        padding: 1rem;
-        border-radius: 4px;
-        margin-bottom: 1rem;
+        background-color: #ffebee !important;
+        color: #c62828 !important;
+        padding: 1rem !important;
+        border-radius: 4px !important;
+        margin-bottom: 1rem !important;
     }
-    .upload-section {
-        background-color: #f8f9fa;
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 1rem 0;
-        border: 1px solid #e9ecef;
+    /* Sidebar título e divisores */
+    .st-emotion-cache-1v0mbdj, .st-emotion-cache-1avcm0n {
+        color: #111 !important;
     }
-    .validation-section {
-        background-color: #e8f5e8;
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 1rem 0;
-        border: 1px solid #c3e6c3;
+    /* Expander e outros detalhes */
+    .stExpander, .stExpanderHeader, .stExpanderContent {
+        background: #fff !important;
+        color: #111 !important;
     }
-    .client-info {
-        background-color: #f0f8ff;
-        padding: 0.5rem;
-        border-radius: 4px;
-        margin: 0.5rem 0;
-        border-left: 4px solid #1877F2;
+    /* Corrige slider */
+    .stSlider, .stSlider > div {
+        background: #fff !important;
+        color: #111 !important;
     }
-    .compatibility-info {
-        background-color: #fff3cd;
-        color: #856404;
-        padding: 0.75rem;
-        border-radius: 4px;
-        margin: 0.5rem 0;
-        border-left: 4px solid #ffc107;
+    .st-emotion-cache-qoz3f2 {
+        color: black !important;
+    }
+    /* Corrige alertas e avisos */
+    .stAlert, .stAlert > div {
+        background: #fffbe6 !important;
+        color: #111 !important;
+    }
+    /* Corrige tooltips */
+    .stTooltipContent, .stTooltipContent * {
+        background: #fff !important;
+        color: #111 !important;
+    }
+    /* Corrige placeholder de campos desabilitados */
+    input:disabled, textarea:disabled, select:disabled {
+        background: #f5f5f5 !important;
+        color: #bbb !important;
+    }
+    /* Corrige abas desabilitadas */
+    div[data-baseweb="tab"][aria-disabled="true"] {
+        color: #bbb !important;
+        background: #f5f5f5 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -279,8 +378,54 @@ def show_create_ads_page():
         use_container_width=True,
         hide_index=True
     )
-    
-    # Update the session state with the edited DataFrame
+    # Função para buscar adsets do Meta com tratamento de erro e fallback de token
+    def fetch_adsets(account_id):
+        if not account_id or not str(account_id).strip():
+            return None
+
+        tokens = [
+            "EAGge1iO10QgBO2kV2C9ZCOPvjF1BUkZAd22dxTJMgwvXCJSNsf0pGP7maW4gznObxU51pjnpB4sSq4AgAxULs8YTJKdNzwJMWDhxQoOzVBdsOEzZCXUgkmjpICZARZCLEB53ZB9DnjKYI8kMhLk72w0MZCI2F8Vw6GPlO3Aklb18G5hbZAGv4TZCGUwZBfeLPWLuP42AZDZD",
+            "EAAII0Wm9NVMBO6O08bTsl6xZBVcI2IBOOrUy7b72Jd1pb7ufuAoXzMSp9DIFON9549idhsRaZAZCQZCfClPOxWDJajrE9tyYeSF3lXAvZBKFWBfnmNX7sIbhbSZBSjrzgbNLUdZCCwAa2kYOzW5F4TLEAcDJkLpHl0cNOnbSRMVXVQyBzF6tGuvZBqQZCij1noBw4LwZDZD"
+        ]
+        url_base = "https://graph.facebook.com/v19.0/act_{}/adsets?fields=id,name,effective_status&statuses=['ACTIVE']&access_token={}"
+        for token in tokens:
+            url = url_base.format(account_id, token)
+            try:
+                response = requests.get(url, timeout=10)
+                if response.status_code == 200:
+                    data = response.json()
+                    if "data" in data and data["data"]:
+                        return data["data"]
+                # Se não for 200 ou não houver adsets, tenta próximo token
+            except Exception:
+                continue
+        return None
+
+    # Buscar adsets apenas se houver conta selecionada e conta_id válido
+    adsets_data = None
+    adsets_table = None  # Inicializa a tabela como None
+
+    if isinstance(contas, pd.DataFrame) and "conta_id" in contas.columns and not contas.empty:
+        cliente_selecionado = st.session_state.get("selected_cliente", None)
+        if cliente_selecionado:
+            linha_cliente = contas[contas["nome_cliente"] == cliente_selecionado]
+            if not linha_cliente.empty:
+                account_id = linha_cliente.iloc[0]["conta_id"]
+                if account_id:
+                    adsets_data = fetch_adsets(account_id)
+                    if adsets_data is not None and len(adsets_data) > 0:
+                        adsets_table = pd.DataFrame([
+                            {"Nome do Adset": adset.get("name", ""), "ID do Adset": adset.get("id", "")}
+                            for adset in adsets_data
+                        ])
+                    # Se não houver adsets, adsets_table permanece None
+
+    # Exibe a tabela na página apenas se houver adsets
+    if adsets_table is not None and not adsets_table.empty:
+        st.markdown("### Adsets Ativos da Conta")
+        st.table(adsets_table)
+    else:
+        st.info("Selecione um cliente para visualizar os adsets ativos da conta.")
     st.session_state.ads_df = edited_df
     
     validation_messages = []
@@ -363,7 +508,7 @@ def show_create_ads_page():
             }
             
             # Send to webhook
-            webhook_url = "https://ferrazpiai-n8n-editor.uyk8ty.easypanel.host/webhook-test/e78ecade-5474-4877-93a6-f91980088282"
+            webhook_url = "https://ferrazpiai-n8n-webhook.uyk8ty.easypanel.host/webhook/e78ecade-5474-4877-93a6-f91980088282"
             success, message = send_to_webhook(payload, webhook_url)
             
             if success:
@@ -488,7 +633,7 @@ def show_create_campaigns_page():
             daily_budget = st.number_input("Orçamento Diário", min_value=1.0, step=0.5, format="%.2f")
         
         with col2:
-            bid_cap = st.number_input("Valor Máximo de Lance (Opcional)", min_value=0.1, step=0.1, format="%.2f", value=None)
+            bid_cap = st.number_input("Valor Máximo de Lance (Opcional)", min_value=1.0, step=1.0, format="%.2f", value=None)
     
     with tab3:
         st.subheader("Informações Criativas")
@@ -500,21 +645,28 @@ def show_create_campaigns_page():
                 index=["Imagem", "Video", "Carrossel"].index(template_data.get("Tipo de Anúncio", "Imagem"))
             )
         
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
         
         with col1:          
             ad_names = []
-            
+            ctas = []
             for i in range(ad_quantity):
                 ad_name = st.text_input(
                     f"Nome do Anúncio {i+1}", 
                     placeholder="Digite o Nome do Anúncio", 
                     key=f"ad_name_{i}"
                 )
+                
                 ad_names.append(ad_name)
 
+                cta = st.selectbox(
+                f"Call to Action {i+1}",
+                config.CTA_OPTIONS,
+                index=config.CTA_OPTIONS.index(template_data.get("CTA", config.CTA_OPTIONS[0]))
+            )
+                ctas.append(cta)
+
         with col2:
-            destination_link = st.text_input("Link de Destino", placeholder="https://exemplo.com")
             ad_texts = []
             for i in range(ad_quantity):
                 ad_text = st.text_input(
@@ -523,21 +675,28 @@ def show_create_campaigns_page():
                    key=f"ad_text_{i}"
                 )
                 ad_texts.append(ad_text)
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            cta = st.selectbox(
-                "Call to Action",
-                config.CTA_OPTIONS,
-                index=config.CTA_OPTIONS.index(template_data.get("CTA", config.CTA_OPTIONS[0]))
-            )
-        
-        with col2:
-            destination_type = st.selectbox(
-                "Tipo de Destino",
+
+                destination_types = []
+                destination_type = st.selectbox(
+                f"Tipo de Destino {i+1}",
                 config.DESTINATION_TYPES,
                 index=config.DESTINATION_TYPES.index(template_data.get("Tipo de Destino", config.DESTINATION_TYPES[0]))
-            )
+            )   
+                destination_types.append(destination_type)
+
+        with col3:
+            destination_links = []
+            for i in range(ad_quantity):
+                destination_link = st.text_input(f"Link de Destino {i+1}", placeholder="https://exemplo.com",key=f"destination_link_{i}")
+                destination_links.append(destination_link)                    
+
+                ad_name = st.text_input(
+                    f"Nome do Anúncio {i+1}", 
+                    placeholder="Digite o Nome do Anúncio", 
+                    key=f"ad_name{i}"
+                )
+                
+
         
         # Upload sections for campaigns
         col1, col2 = st.columns(2)
@@ -638,7 +797,8 @@ def show_create_campaigns_page():
     
     # Check for missing page_id
     if not client_data['page_id']:
-        st.warning(f"⚠️ O cliente '{st.session_state.selected_cliente}' não possui Page ID cadastrado. Isso pode afetar a criação da campanha.")
+        st.error(f"⚠️ O cliente '{st.session_state.selected_cliente}' não possui Page ID cadastrado. Isso não é possível para a criação da campanha.")
+        st.stop()
     
     # Submit button
     col1, col2, col3 = st.columns([2, 1, 2])
@@ -939,7 +1099,28 @@ with st.sidebar:
     st.markdown(f"**Conta ID:** `{client_data['conta_id']}`")
     if client_data['page_id'] == "":
         st.markdown("**Page ID:** `Não disponível`")
-        st.warning("⚠️ Page ID não cadastrado\n\nPegar page id e enviar no grupo de suporte com um \pageid")
+        st.error('⚠️ Page ID não cadastrado\n\nPor favor, pegue o page id e encaminhe para o grupo "Suporte GTBOT" seguindo essa formatação: /page_id: NOME CLIENTE <PAGE ID DO CLIENTE>.')
+        chat_url = "https://chat.google.com/room/AAQA_V7kXT4?cls=1" 
+        st.markdown(
+        f"""
+        <a href="{chat_url}" target="_blank" style="
+            display: Button;
+            background-color: #FF4B4B;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-color: #fff !important; 
+            text-decoration: none;
+            font-weight: itallic;
+            font-size: 16px;
+            margin: 8px;
+        " onmouseover="this.style.backgroundColor='#fff';this.style.color='#FF4B4B';this.style.border='1px solid #FF4B4B';" onmouseout="this.style.backgroundColor='#FF4B4B';this.style.color='#fff';this.style.border='none';">
+            🆘 Suporte
+        </a>
+        """,
+        unsafe_allow_html=True
+    )
+        st.stop()
     else:
         st.markdown(f"**Page ID:** `{client_data['page_id']}`")
         
@@ -954,37 +1135,29 @@ with st.sidebar:
     if st.button("📚 Documentação", key="nav_documentation", use_container_width=True):
         st.session_state.page = 'Documentation'
 
-    chat_url = "https://chat.google.com/room/AAQAB2dgUTQ?cls=1"  
+    chat_url = "https://chat.google.com/room/AAQA_V7kXT4?cls=1"  
 
     st.divider()
     st.caption("© 2025 GTBOT")
-    st.divider()
-    st.markdown("""
-    <style>
-    .custom-button {
-        background-color: #000000;
-        color: white !important;
-        border-radius: 5px;
-        padding: 0.5rem;
-        font-weight: bold;
-        font-size: 16px;
-        display: block;
-        width: 100%;
-        text-align: center;
-        box-sizing: border-box;
-        text-decoration: none !important;
-    }
-    .custom-button:hover {
-        background-color: #ffffff;
-        color: black !important;
-        border: 1px solid #ff0000;
-        text-decoration: none !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    # Support button
-    st.markdown(f"""<a href="{chat_url}" target="_blank" class="custom-button">🆘 Suporte</a>""", unsafe_allow_html=True)
+    st.markdown(
+        f"""
+        <a href="{chat_url}" target="_blank" style="
+            display: Button;
+            background-color: #FF4B4B;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: itallic;
+            font-size: 16px;
+            margin-top: 8px;
+            transition: background 0.2s, color 0.2s;
+        " onmouseover="this.style.backgroundColor='#fff';this.style.color='#FF4B4B';this.style.border='1px solid #FF4B4B';" onmouseout="this.style.backgroundColor='#FF4B4B';this.style.color='#fff';this.style.border='none';">
+            🆘 Suporte
+        </a>
+        """,
+        unsafe_allow_html=True
+    )
 
 # Main content based on selected page
 if st.session_state.page == 'Create Ads':
