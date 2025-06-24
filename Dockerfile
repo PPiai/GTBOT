@@ -26,4 +26,4 @@ EXPOSE 8501
 
 # O comando para iniciar a aplicação quando o contêiner é executado.
 # Este comando é otimizado para rodar em um servidor/contêiner.
-CMD [ "streamlit", "run", "app/app.py", "--server.port=8501", "--server.address=0.0.0.0" ]
+CMD [ "streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0" ]
