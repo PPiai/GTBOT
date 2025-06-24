@@ -1115,7 +1115,7 @@ with st.sidebar:
     if client_data['page_id'] == "":
         st.markdown("**Page ID:** `Não disponível`")
         st.error('⚠️ Page ID não cadastrado\n\nPor favor, pegue o page id e encaminhe para o grupo "Suporte GTBOT" seguindo essa formatação: /page_id: NOME CLIENTE <PAGE ID DO CLIENTE>.')
-        chat_url = "https://chat.google.com/room/AAQA_V7kXT4?cls=1" 
+        chat_url = "https://chat.google.com/room/AAQAOzlyvJU?cls=1" 
         st.markdown(
         f"""
         <a href="{chat_url}" target="_blank" style="
@@ -1150,7 +1150,7 @@ with st.sidebar:
     if st.button("📚 Documentação", key="nav_documentation", use_container_width=True):
         st.session_state.page = 'Documentation'
 
-    chat_url = "https://chat.google.com/room/AAQA_V7kXT4?cls=1"  
+    chat_url = "https://chat.google.com/room/AAQAOzlyvJU?cls=1"  
 
     st.divider()
     st.caption("© 2025 GTBOT")
