@@ -881,7 +881,7 @@ def show_create_campaigns_page():
             }
             
             # Send to webhook
-            webhook_url = "https://ferrazpiai-n8n-editor.uyk8ty.easypanel.host/webhook-test/e78ecade-5474-4877-93a6-f91980088282"
+            webhook_url = "https://ferrazpiai-n8n-webhook.uyk8ty.easypanel.host/webhook/e78ecade-5474-4877-93a6-f91980088282"
             success, message = send_to_webhook(payload, webhook_url)
             
             if success:
