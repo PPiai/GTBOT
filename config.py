@@ -3,270 +3,254 @@ Configurações centralizadas para Meta Ads Manager
 Todas as listas e mapeamentos estão aqui para facilitar manutenção
 """
 
-# ============================================================================
-# CONFIGURAÇÕES PRINCIPAIS - EDITE AQUI PARA ALTERAR TUDO
-# ============================================================================
+# ========================================================================
+# CONFIGURAÇÃO SIMPLIFICADA E FOCADA PARA META ADS API (Q2 2025)
+# Foco em padrões de campanha para Site, Facebook e WhatsApp.
+# ========================================================================
 
-class MetaAdsConfig:
-    """Configuração centralizada para Meta Ads Manager"""
-    
-    # OBJETIVOS DE CAMPANHA (ODAX prioritários)
-    CAMPAIGN_OBJECTIVES = [
-        # ODAX - Prioritários
-        "OUTCOME_AWARENESS",      # Novo padrão Meta (substitui OUTCOME_AWARENESS)
-        "OUTCOME_TRAFFIC",        # Novo padrão Meta (substitui OUTCOME_TRAFFIC) 
-        "OUTCOME_ENGAGEMENT",     # Novo padrão Meta (substitui OUTCOME_ENGAGEMENT)
-        "OUTCOME_LEADS",          # Novo padrão Meta (substitui OUTCOME_LEADS)
-        "REACH",          # Alcance máximo
-        # Legados mantidos para compatibilidade
-        "BRAND_AWARENESS",
-        "VIDEO_VIEWS",
-        "LINK_CLICKS", 
-        "CONVERSIONS",
-        "MESSAGES",
-        "POST_ENGAGEMENT",
-        "PAGE_LIKES",
-        "EVENT_RESPONSES"
-    ]
-    
-    # TIPOS DE OTIMIZAÇÃO por categoria
-    OPTIMIZATION_GOALS = [
-        # Consciência/Alcance
-        "REACH", "IMPRESSIONS", "THRUPLAY", "PROFILE_VISIT",
-        # Tráfego
-        "LINK_CLICKS", "LANDING_PAGE_VIEWS",
-        # Engajamento
-        "POST_ENGAGEMENT", "PAGE_LIKES", "EVENT_RESPONSES", 
-        "ENGAGED_USERS", "PROFILE_AND_PAGE_ENGAGEMENT",
-        # Leads/Conversões
-        "LEAD_GENERATION", "QUALITY_LEAD", "CONVERSATIONS", 
-        "REMINDERS_SET", "MESSAGING_APPOINTMENT_CONVERSION",
-        # Genéricos
-        "AD_RECALL_LIFT", "VIDEO_VIEWS", "SOCIAL_IMPRESSIONS"
-    ]
-    
-    # EVENTOS DE COBRANÇA
-    BILLING_EVENTS = [
-        "IMPRESSIONS",
-        "LINK_CLICKS", 
-        "CLICKS",
-        "PAGE_LIKES",
-        "POST_ENGAGEMENT",
-        "VIDEO_VIEWS",
-        "THRUPLAY"
-    ]
-    
-    # ESTRATÉGIAS DE LANCE
-    BID_STRATEGIES = [
-        "LOWEST_COST_WITHOUT_CAP",
-        "COST_CAP", 
-        "LOWEST_COST_WITH_MIN_ROAS",
-        "LOWEST_COST_WITH_BID_CAP"
-    ]
-    
-    # CALL TO ACTION
-    CTA_OPTIONS = [
-        # E-commerce
-        "BUY_NOW", "SHOP_NOW", "ADD_TO_CART", "VIEW_CART", "ORDER_NOW",
-        # Engajamento
-        "LEARN_MORE", "CONTACT_US", "GET_OFFER", "SIGN_UP", "GET_STARTED",
-        # Mensagens
-        "WHATSAPP_MESSAGE", "MESSAGE_PAGE", "CHAT_WITH_US", "WHATSAPP",
-        # Agendamento
-        "BOOK_NOW", "BOOK_A_CONSULTATION", "MAKE_APPOINTMENT",
-        # Outros populares
-        "CONTACT", "DONATE", "SUBSCRIBE", "WATCH_MORE", "FOLLOW_PAGE",
-        "GET_DIRECTIONS", "PLAY_GAME", "SEND_A_GIFT", "SHARE"
-    ]
-    
-    # TIPOS DE DESTINO
-    DESTINATION_TYPES = [
-        # Padrão/Website
-        "WEBSITE", "FACEBOOK", "INSTAGRAM_PROFILE",
-        # Mensagens
-        "MESSENGER", "WHATSAPP", "INSTAGRAM_DIRECT",
-        # Outros
-        "SHOP_AUTOMATIC", "UNDEFINED"
-    ]
-    
-    # ========================================================================
-    # MAPEAMENTOS DE COMPATIBILIDADE - BASEADO NA DOCUMENTAÇÃO META
-    # ========================================================================
-    
-    # Mapeamento Objetivo → Otimizações Válidas
-    OBJECTIVE_OPTIMIZATION_MAP = {
-        "AWARENESS": ["REACH", "IMPRESSIONS", "THRUPLAY", "PROFILE_VISIT"],
-        "TRAFFIC": ["LINK_CLICKS", "LANDING_PAGE_VIEWS"],
-        "ENGAGEMENT": ["POST_ENGAGEMENT", "PAGE_LIKES", "EVENT_RESPONSES", 
-                      "ENGAGED_USERS", "PROFILE_AND_PAGE_ENGAGEMENT"],
-        "LEADS": ["LEAD_GENERATION", "QUALITY_LEAD", "CONVERSATIONS", 
-                 "REMINDERS_SET", "MESSAGING_APPOINTMENT_CONVERSION"],
-        "REACH": ["REACH", "IMPRESSIONS"],
-        # Legados
-        "BRAND_AWARENESS": ["AD_RECALL_LIFT", "REACH", "IMPRESSIONS"],
-        "VIDEO_VIEWS": ["VIDEO_VIEWS", "THRUPLAY", "IMPRESSIONS"],
-        "LINK_CLICKS": ["LINK_CLICKS", "LANDING_PAGE_VIEWS"],
-        "CONVERSIONS": ["LINK_CLICKS", "LANDING_PAGE_VIEWS", "IMPRESSIONS"],
-        "MESSAGES": ["CONVERSATIONS", "IMPRESSIONS", "REACH"],
-        "POST_ENGAGEMENT": ["POST_ENGAGEMENT", "IMPRESSIONS"],
-        "PAGE_LIKES": ["PAGE_LIKES", "IMPRESSIONS"],
-        "EVENT_RESPONSES": ["EVENT_RESPONSES", "IMPRESSIONS"]
-    }
-    
-    # Mapeamento Otimização → Cobrança Recomendada
-    OPTIMIZATION_BILLING_MAP = {
-        "REACH": "IMPRESSIONS",
-        "IMPRESSIONS": "IMPRESSIONS", 
-        "THRUPLAY": "THRUPLAY",
-        "LINK_CLICKS": "LINK_CLICKS",
-        "LANDING_PAGE_VIEWS": "LINK_CLICKS",
-        "POST_ENGAGEMENT": "POST_ENGAGEMENT",
-        "PAGE_LIKES": "PAGE_LIKES",
-        "VIDEO_VIEWS": "VIDEO_VIEWS",
-        "CONVERSATIONS": "IMPRESSIONS",
-        "LEAD_GENERATION": "IMPRESSIONS"
-    }
-    
-    # Mapeamento Otimização → Promoted Object Requirements
-    PROMOTED_OBJECT_REQUIREMENTS = {
-        "REACH": {"required": False, "fields": []},
-        "IMPRESSIONS": {"required": False, "fields": []},
-        "THRUPLAY": {"required": False, "fields": [], "note": "Criativo deve ser vídeo"},
-        "PROFILE_VISIT": {"required": True, "fields": ["page_id"], "note": "Para Instagram"},
-        "LINK_CLICKS": {"required": True, "fields": ["object_story_id", "website_conversions"]},
-        "LANDING_PAGE_VIEWS": {"required": True, "fields": ["website_conversions", "pixel_id"]},
-        "POST_ENGAGEMENT": {"required": True, "fields": ["object_story_id"]},
-        "PAGE_LIKES": {"required": True, "fields": ["page_id"]},
-        "EVENT_RESPONSES": {"required": True, "fields": ["event_id"]},
-        "LEAD_GENERATION": {"required": True, "fields": ["pixel_id", "custom_event_type"]},
-        "CONVERSATIONS": {"required": True, "fields": ["page_id"]}
-    }
-    
-    # Templates de campanha atualizados
-    CAMPAIGN_TEMPLATES = {
-        "Consciência de Marca": {
-            "Tipo de Campanha": "ABO",
-            "Objetivo da Campanha": "AWARENESS",
-            "Status da Campanha": "PAUSED",
-            "Tipo de Otimização": "REACH",
-            "Cobrança do Adset": "IMPRESSIONS",
-            "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
-            "Tipo de Anúncio": "Imagem",
-            "CTA": "LEARN_MORE",
-            "Tipo de Destino": "WEBSITE"
-        },
-        "Tráfego para Site": {
-            "Tipo de Campanha": "ABO", 
-            "Objetivo da Campanha": "TRAFFIC",
-            "Status da Campanha": "PAUSED",
-            "Tipo de Otimização": "LINK_CLICKS",
-            "Cobrança do Adset": "LINK_CLICKS",
-            "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
-            "Tipo de Anúncio": "Imagem",
-            "CTA": "LEARN_MORE",
-            "Tipo de Destino": "WEBSITE"
-        },
-        "Engajamento": {
-            "Tipo de Campanha": "ABO",
-            "Objetivo da Campanha": "ENGAGEMENT", 
-            "Status da Campanha": "PAUSED",
-            "Tipo de Otimização": "POST_ENGAGEMENT",
-            "Cobrança do Adset": "POST_ENGAGEMENT",
-            "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
-            "Tipo de Anúncio": "Imagem",
-            "CTA": "LEARN_MORE",
-            "Tipo de Destino": "FACEBOOK"
-        },
-        "Geração de Leads": {
-            "Tipo de Campanha": "ABO",
-            "Objetivo da Campanha": "LEADS",
-            "Status da Campanha": "PAUSED", 
-            "Tipo de Otimização": "LEAD_GENERATION",
-            "Cobrança do Adset": "IMPRESSIONS",
-            "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
-            "Tipo de Anúncio": "Imagem",
-            "CTA": "SIGN_UP",
-            "Tipo de Destino": "WEBSITE"
-        },
-        "Mensagem WhatsApp": {
-            "Tipo de Campanha": "ABO",
-            "Objetivo da Campanha": "LEADS",
-            "Status da Campanha": "PAUSED",
-            "Tipo de Otimização": "CONVERSATIONS", 
-            "Cobrança do Adset": "IMPRESSIONS",
-            "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
-            "Tipo de Anúncio": "Imagem",
-            "CTA": "WHATSAPP_MESSAGE",
-            "Tipo de Destino": "WHATSAPP"
-        }
-    }
-    
-    # Categorias para documentação
-    OBJECTIVE_CATEGORIES = {
-        "ODAX Modernos": ["AWARENESS", "TRAFFIC", "ENGAGEMENT", "LEADS", "REACH"],
-        "Legados": ["BRAND_AWARENESS", "VIDEO_VIEWS", "LINK_CLICKS", "CONVERSIONS", 
-                   "MESSAGES", "POST_ENGAGEMENT", "PAGE_LIKES", "EVENT_RESPONSES"]
-    }
-    
-    OPTIMIZATION_CATEGORIES = {
-        "Consciência": ["REACH", "IMPRESSIONS", "THRUPLAY", "PROFILE_VISIT", "AD_RECALL_LIFT"],
-        "Tráfego": ["LINK_CLICKS", "LANDING_PAGE_VIEWS"],
-        "Engajamento": ["POST_ENGAGEMENT", "PAGE_LIKES", "EVENT_RESPONSES", 
-                       "ENGAGED_USERS", "PROFILE_AND_PAGE_ENGAGEMENT"],
-        "Leads/Conversões": ["LEAD_GENERATION", "QUALITY_LEAD", "CONVERSATIONS", 
-                            "REMINDERS_SET", "MESSAGING_APPOINTMENT_CONVERSION"],
-        "Outros": ["VIDEO_VIEWS", "SOCIAL_IMPRESSIONS"]
-    }
-    
-    CTA_CATEGORIES = {
-        "E-commerce": ["BUY_NOW", "SHOP_NOW", "ADD_TO_CART", "VIEW_CART", "ORDER_NOW"],
-        "Engajamento": ["LEARN_MORE", "CONTACT_US", "GET_OFFER", "SIGN_UP", "GET_STARTED"],
-        "Mensagens": ["WHATSAPP_MESSAGE", "MESSAGE_PAGE", "CHAT_WITH_US", "WHATSAPP"],
-        "Agendamento": ["BOOK_NOW", "BOOK_A_CONSULTATION", "MAKE_APPOINTMENT"],
-        "Social": ["FOLLOW_PAGE", "SHARE", "WATCH_MORE", "PLAY_GAME"]
-    }
+# OBJETIVOS DE CAMPANHA (Padrão ODAX Focado)
+CAMPAIGN_OBJECTIVES = [
+    "OUTCOME_AWARENESS",       # Reconhecimento
+    "OUTCOME_TRAFFIC",         # Tráfego
+    "OUTCOME_ENGAGEMENT",      # Engajamento
+    "OUTCOME_LEADS",           # Leads (Cadastros)
+    "OUTCOME_SALES"            # Vendas (para site)
+]
 
-    # ========================================================================
-    # MÉTODOS UTILITÁRIOS
-    # ========================================================================
-    
-    @classmethod
-    def get_valid_optimizations(cls, objective):
-        """Retorna otimizações válidas para um objetivo"""
-        return cls.OBJECTIVE_OPTIMIZATION_MAP.get(objective, [])
-    
-    @classmethod
-    def get_recommended_billing(cls, optimization):
-        """Retorna cobrança recomendada para uma otimização"""
-        return cls.OPTIMIZATION_BILLING_MAP.get(optimization, "IMPRESSIONS")
-    
-    @classmethod
-    def requires_promoted_object(cls, optimization):
-        """Verifica se otimização requer promoted_object"""
-        req = cls.PROMOTED_OBJECT_REQUIREMENTS.get(optimization, {})
-        return req.get("required", False)
-    
-    @classmethod
-    def get_promoted_object_fields(cls, optimization):
-        """Retorna campos necessários para promoted_object"""
-        req = cls.PROMOTED_OBJECT_REQUIREMENTS.get(optimization, {})
-        return req.get("fields", [])
-    
-    @classmethod
-    def validate_objective_optimization(cls, objective, optimization):
-        """Valida se combinação objetivo-otimização é válida"""
-        valid_opts = cls.get_valid_optimizations(objective)
-        return optimization in valid_opts
-    
-    @classmethod
-    def get_template_data(cls, template_name):
-        """Retorna dados de um template"""
-        return cls.CAMPAIGN_TEMPLATES.get(template_name, {})
-    
-    @classmethod
-    def get_all_templates(cls):
-        """Retorna lista de todos os templates"""
-        return list(cls.CAMPAIGN_TEMPLATES.keys())
+# Objetivos legados mais comuns.
+LEGACY_OBJECTIVES = [
+    "BRAND_AWARENESS", "REACH", "TRAFFIC", "ENGAGEMENT",
+    "VIDEO_VIEWS", "LEAD_GENERATION", "MESSAGES", "CONVERSIONS",
+    "POST_ENGAGEMENT", "PAGE_LIKES", "EVENT_RESPONSES"
+]
 
-# Instância global para uso fácil
-config = MetaAdsConfig()
+# METAS DE OTIMIZAÇÃO (Focadas no Padrão Web)
+OPTIMIZATION_GOALS = [
+    "AD_RECALL_LIFT",
+    "CONVERSATIONS",
+    "CONVERSION_LEADS",
+    "CONVERSIONS",
+    "ENGAGED_USERS",
+    "EVENT_RESPONSES",
+    "IMPRESSIONS",
+    "LANDING_PAGE_VIEWS",
+    "LEAD_GENERATION",
+    "LINK_CLICKS",
+    "OFFSITE_CONVERSIONS",
+    "PAGE_LIKES",
+    "POST_ENGAGEMENT",
+    "QUALITY_LEAD",
+    "REACH",
+    "REMINDERS_SET",
+    "THRUPLAY",
+    "VALUE"
+]
+
+# EVENTOS DE COBRANÇA (Ad Set Level)
+BILLING_EVENTS = [
+    "IMPRESSIONS",
+    "LINK_CLICKS",
+    "THRUPLAY"
+]
+
+# ESTRATÉGIAS DE LANCE (Ad Set Level)
+BID_STRATEGIES = [
+    "LOWEST_COST_WITHOUT_CAP",  # Custo mais baixo (Padrão)
+    "COST_CAP",                 # Limite de Custo
+    "LOWEST_COST_WITH_BID_CAP", # Limite de Lance
+    "LOWEST_COST_WITH_MIN_ROAS" # ROAS Mínimo
+]
+
+# OPÇÕES DE CALL TO ACTION (Focadas no Padrão Web e Facebook)
+CTA_OPTIONS = [
+    "ADD_TO_CART", "APPLY_NOW", "BOOK_TRAVEL", "BUY_NOW", "CONTACT_US",
+    "DONATE_NOW", "DOWNLOAD", "EVENT_RSVP", "GET_DIRECTIONS", "GET_OFFER",
+    "GET_OFFER_VIEW", "GET_QUOTE", "GET_SHOWTIMES", "LEARN_MORE", "LIKE_PAGE",
+    "LISTEN_MUSIC", "LISTEN_NOW", "MESSAGE_PAGE", "OPEN_LINK",
+    "ORDER_NOW", "PLAY_GAME", "REQUEST_TIME", "SAVE", "SEE_MENU",
+    "SEND_A_GIFT", "SEND_UPDATES", "SHOP_NOW", "SIGN_UP",
+    "SUBSCRIBE", "VOTE_NOW", "WATCH_MORE", "WATCH_VIDEO", "WHATSAPP_MESSAGE"
+]
+
+# TIPOS DE DESTINO (Focados no Padrão Web e Facebook)
+DESTINATION_TYPES = [
+    "WEBSITE",
+    "MESSENGER",
+    "WHATSAPP",
+    "FACEBOOK",
+    "ON_AD", # Para Formulários Instantâneos
+    "MESSAGING_MESSENGER",
+    "MESSAGING_WHATSAPP"
+]
+
+# ========================================================================
+# MAPEAMENTOS DE COMPATIBILIDADE (VERSÃO SIMPLIFICADA)
+# ========================================================================
+
+# Mapeamento Objetivo ODAX → Otimizações Válidas
+OBJECTIVE_OPTIMIZATION_MAP = {
+    "OUTCOME_AWARENESS": ["REACH", "IMPRESSIONS", "AD_RECALL_LIFT", "THRUPLAY"],
+    "OUTCOME_TRAFFIC": ["LINK_CLICKS", "LANDING_PAGE_VIEWS", "IMPRESSIONS", "REACH"],
+    "OUTCOME_ENGAGEMENT": [
+        "POST_ENGAGEMENT", "PAGE_LIKES", "EVENT_RESPONSES", "CONVERSATIONS",
+        "THRUPLAY", "REACH", "IMPRESSIONS"
+    ],
+    "OUTCOME_LEADS": ["LEAD_GENERATION", "CONVERSIONS", "CONVERSATION_LEADS", "QUALITY_LEAD", "IMPRESSIONS"],
+    "OUTCOME_SALES": ["CONVERSIONS", "LINK_CLICKS", "LANDING_PAGE_VIEWS", "VALUE", "IMPRESSIONS"]
+}
+
+# Mapeamento Otimização → Cobrança Válida (Recomendada)
+OPTIMIZATION_BILLING_MAP = {
+    "REACH": "IMPRESSIONS",
+    "IMPRESSIONS": "IMPRESSIONS",
+    "THRUPLAY": "THRUPLAY",
+    "LINK_CLICKS": "LINK_CLICKS",
+    "LANDING_PAGE_VIEWS": "IMPRESSIONS",
+    "POST_ENGAGEMENT": "IMPRESSIONS",
+    "PAGE_LIKES": "IMPRESSIONS",
+    "CONVERSIONS": "IMPRESSIONS",
+    "VALUE": "IMPRESSIONS",
+    "LEAD_GENERATION": "IMPRESSIONS",
+    "QUALITY_LEAD": "IMPRESSIONS"
+}
+
+# NOVO MAPA: Mapeamento Objetivo ODAX → Destinos Válidos
+OBJECTIVE_DESTINATION_MAP = {
+    "OUTCOME_AWARENESS": ["WEBSITE", "FACEBOOK"],
+    "OUTCOME_TRAFFIC": ["WEBSITE", "MESSENGER", "WHATSAPP", "MESSAGING_MESSENGER", "MESSAGING_WHATSAPP"],
+    "OUTCOME_ENGAGEMENT": ["FACEBOOK", "WEBSITE", "MESSENGER", "MESSAGING_MESSENGER"],
+    "OUTCOME_LEADS": ["WEBSITE", "ON_AD", "MESSENGER", "MESSAGING_MESSENGER"],
+    "OUTCOME_SALES": ["WEBSITE"]
+}
+
+# ========================================================================
+# TEMPLATES DE CAMPANHA (FOCO EM E-COMMERCE E INSIDE SALES)
+# ========================================================================
+
+CAMPAIGN_TEMPLATES = {
+    "Vendas para E-commerce (Conversão)": {
+        "Tipo de Campanha": "CBO",
+        "Objetivo da Campanha": "OUTCOME_SALES",
+        "Status da Campanha": "PAUSED",
+        "Tipo de Otimização": "CONVERSIONS",
+        "Cobrança do Adset": "IMPRESSIONS",
+        "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
+        "Tipo de Anúncio": "Imagem",
+        "CTA": "SHOP_NOW",
+        "Tipo de Destino": "WEBSITE",
+        "Nota": "Requer Pixel da Meta configurado com eventos de conversão (ex: Purchase)."
+    },
+    "Leads Qualificados (Inside Sales)": {
+        "Tipo de Campanha": "ABO",
+        "Objetivo da Campanha": "OUTCOME_LEADS",
+        "Status da Campanha": "PAUSED",
+        "Tipo de Otimização": "QUALITY_LEAD",
+        "Cobrança do Adset": "IMPRESSIONS",
+        "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
+        "Tipo de Anúncio": "Video",
+        "CTA": "GET_QUOTE",
+        "Tipo de Destino": "ON_AD", # Usa o Formulário Instantâneo
+        "Nota": "Utiliza Formulário Instantâneo da Meta. Para máxima qualidade, integre seu CRM."
+    },
+    "Tráfego para Site": {
+        "Tipo de Campanha": "ABO",
+        "Objetivo da Campanha": "OUTCOME_TRAFFIC",
+        "Status da Campanha": "PAUSED",
+        "Tipo de Otimização": "LANDING_PAGE_VIEWS",
+        "Cobrança do Adset": "IMPRESSIONS",
+        "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
+        "Tipo de Anúncio": "Imagem",
+        "CTA": "LEARN_MORE",
+        "Tipo de Destino": "WEBSITE"
+    },
+    "Mensagem WhatsApp": {
+        "Tipo de Campanha": "ABO",
+        "Objetivo da Campanha": "OUTCOME_TRAFFIC",
+        "Status da Campanha": "PAUSED",
+        "Tipo de Otimização": "CONVERSATIONS",
+        "Cobrança do Adset": "IMPRESSIONS",
+        "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
+        "Tipo de Anúncio": "Imagem",
+        "CTA": "WHATSAPP_MESSAGE",
+        "Tipo de Destino": "MESSAGING_WHATSAPP"
+    }
+}
+
+# ========================================================================
+# MÉTODOS UTILITÁRIOS E VALIDAÇÃO
+# ========================================================================
+
+def get_valid_optimizations(objective):
+    """Retorna otimizações válidas para um objetivo"""
+    return OBJECTIVE_OPTIMIZATION_MAP.get(objective, [])
+
+def get_recommended_billing(optimization):
+    """Retorna cobrança recomendada para uma otimização"""
+    return OPTIMIZATION_BILLING_MAP.get(optimization, BILLING_EVENTS[0])
+
+def get_all_templates():
+    """Retorna lista de todos os templates"""
+    return list(CAMPAIGN_TEMPLATES.keys())
+
+def get_template_data(template_name):
+    """Retorna dados de um template"""
+    return CAMPAIGN_TEMPLATES.get(template_name, {})
+
+def validate_objective_optimization(objective, optimization):
+    """Valida se combinação objetivo-otimização é válida"""
+    valid_opts = get_valid_optimizations(objective)
+    return optimization in valid_opts
+
+# ========================================================================
+# FUNÇÃO DE VALIDAÇÃO DE COMBINAÇÕES
+# ========================================================================
+
+def validate_campaign_combination(objective, optimization, billing, bid_strategy, destination, cta):
+    """
+    Valida uma combinação de parâmetros de campanha com base nas regras da API da Meta.
+
+    Retorna:
+        tuple: (bool, str) onde bool é True se a combinação for válida, e str é a mensagem de status.
+    """
+    # 1. Validação de existência básica
+    if objective not in CAMPAIGN_OBJECTIVES: return (False, f"ERRO: Objetivo '{objective}' é inválido.")
+    if optimization not in OPTIMIZATION_GOALS: return (False, f"ERRO: Otimização '{optimization}' é inválida.")
+    if billing not in BILLING_EVENTS: return (False, f"ERRO: Cobrança '{billing}' é inválida.")
+    if bid_strategy not in BID_STRATEGIES: return (False, f"ERRO: Estratégia de lance '{bid_strategy}' é inválida.")
+    if destination not in DESTINATION_TYPES: return (False, f"ERRO: Destino '{destination}' é inválido.")
+    if cta not in CTA_OPTIONS: return (False, f"ERRO: CTA '{cta}' é inválido.")
+
+    # 2. Validação: Objetivo -> Otimização
+    valid_optimizations = OBJECTIVE_OPTIMIZATION_MAP.get(objective, [])
+    if optimization not in valid_optimizations:
+        return (False, f"FALHA DE COMBINAÇÃO: Otimização '{optimization}' não é válida para o objetivo '{objective}'. Válidas são: {valid_optimizations}")
+
+    # 3. Validação: Objetivo -> Destino
+    valid_destinations = OBJECTIVE_DESTINATION_MAP.get(objective, [])
+    if destination not in valid_destinations:
+        return (False, f"FALHA DE COMBINAÇÃO: Destino '{destination}' não é válido para o objetivo '{objective}'. Válidos são: {valid_destinations}")
+
+    # 4. Validação: Otimização -> Cobrança
+    expected_billing = OPTIMIZATION_BILLING_MAP.get(optimization)
+    if expected_billing and billing != expected_billing:
+        return (False, f"FALHA DE COMBINAÇÃO: Para a otimização '{optimization}', o evento de cobrança esperado é '{expected_billing}', mas foi fornecido '{billing}'.")
+
+    # 5. Validação de Lógica (Avançada)
+    # 5a. ROAS Mínimo requer otimização por valor ou conversões
+    if bid_strategy == "LOWEST_COST_WITH_MIN_ROAS" and optimization not in ["VALUE", "CONVERSIONS"]:
+        return (False, f"FALHA DE LÓGICA: A estratégia de lance 'LOWEST_COST_WITH_MIN_ROAS' requer otimização por 'VALUE' ou 'CONVERSIONS'.")
+
+    # 5b. CTA de WhatsApp deve ter um destino de WhatsApp
+    if cta == "WHATSAPP_MESSAGE" and destination not in ["WHATSAPP", "MESSAGING_WHATSAPP"]:
+        return (False, f"FALHA DE LÓGICA: O CTA 'WHATSAPP_MESSAGE' deve ser usado com um destino de WhatsApp.")
+
+    # Se todas as checagens passarem
+    return (True, "SUCESSO: Combinação válida.")
+
+def requires_promoted_object(optimization):
+    """Compatibilidade: sempre retorna False (não há promoted_object obrigatório)"""
+    return False
+
+def get_promoted_object_fields(optimization):
+    """Compatibilidade: sempre retorna lista vazia (sem campos obrigatórios)"""
+    return []
