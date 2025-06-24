@@ -916,9 +916,11 @@ def show_documentation_page():
         """)
         
         # Mostrar objetivos por categoria usando configuração
-        for category, objectives in config.OBJECTIVE_CATEGORIES.items():
+        for category, objectives in {
+            "ODAX Modernos": config.CAMPAIGN_OBJECTIVES,
+            "Legados": getattr(config, 'LEGACY_OBJECTIVES', [])
+        }.items():
             st.subheader(f"📋 {category}")
-            
             objectives_data = []
             for obj in objectives:
                 valid_opts = config.get_valid_optimizations(obj)
@@ -927,7 +929,6 @@ def show_documentation_page():
                     "Otimizações Válidas": len(valid_opts),
                     "Principais": ", ".join(valid_opts[:3]) + ("..." if len(valid_opts) > 3 else "")
                 })
-            
             st.table(pd.DataFrame(objectives_data))
         
         with st.expander("🔍 Mapeamento Completo Objetivo → Otimização"):
@@ -941,28 +942,34 @@ def show_documentation_page():
         """)
         
         # Mostrar otimizações por categoria
-        for category, optimizations in config.OPTIMIZATION_CATEGORIES.items():
+        optimization_categories = {
+            "Consciência": ["REACH", "IMPRESSIONS", "AD_RECALL_LIFT", "THRUPLAY"],
+            "Tráfego": ["LINK_CLICKS", "LANDING_PAGE_VIEWS"],
+            "Engajamento": ["POST_ENGAGEMENT", "PAGE_LIKES", "EVENT_RESPONSES", "ENGAGED_USERS"],
+            "Leads/Conversões": ["LEAD_GENERATION", "QUALITY_LEAD", "CONVERSATIONS", "CONVERSIONS", "CONVERSION_LEADS"],
+            "Outros": [opt for opt in config.OPTIMIZATION_GOALS if opt not in [
+                "REACH", "IMPRESSIONS", "AD_RECALL_LIFT", "THRUPLAY",
+                "LINK_CLICKS", "LANDING_PAGE_VIEWS",
+                "POST_ENGAGEMENT", "PAGE_LIKES", "EVENT_RESPONSES", "ENGAGED_USERS",
+                "LEAD_GENERATION", "QUALITY_LEAD", "CONVERSATIONS", "CONVERSIONS", "CONVERSION_LEADS"
+            ]]
+        }
+        for category, optimizations in optimization_categories.items():
             st.subheader(f"🎯 {category}")
-            
             opt_data = []
             for opt in optimizations:
                 recommended_billing = config.get_recommended_billing(opt)
+                # Não há mais requires_promoted_object, sempre False
                 requires_promoted = config.requires_promoted_object(opt)
-                
                 opt_data.append({
                     "Otimização": opt,
                     "Cobrança Recomendada": recommended_billing,
                     "Requer Promoted Object": "✅" if requires_promoted else "❌"
                 })
-            
             st.table(pd.DataFrame(opt_data))
         
         with st.expander("🔍 Detalhes de Promoted Object"):
-            for opt, req in config.PROMOTED_OBJECT_REQUIREMENTS.items():
-                if req.get("required"):
-                    st.write(f"**{opt}**: {', '.join(req.get('fields', []))}")
-                    if req.get("note"):
-                        st.write(f"  ℹ️ {req['note']}")
+            st.info("Não há requisitos de Promoted Object definidos na configuração atual.")
     
     with tab3:
         st.header("Eventos de Cobrança")
@@ -1031,10 +1038,18 @@ def show_documentation_page():
         """)
         
         # Mostrar CTAs por categoria
-        for category, ctas in config.CTA_CATEGORIES.items():
+        cta_categories = {
+            "E-commerce": ["BUY_NOW", "SHOP_NOW", "ADD_TO_CART", "ORDER_NOW"],
+            "Engajamento": ["LEARN_MORE", "CONTACT_US", "GET_OFFER", "SIGN_UP", "LIKE_PAGE"],
+            "Mensagens": ["WHATSAPP_MESSAGE", "MESSAGE_PAGE"],
+            "Outros": [cta for cta in config.CTA_OPTIONS if cta not in [
+                "BUY_NOW", "SHOP_NOW", "ADD_TO_CART", "ORDER_NOW",
+                "LEARN_MORE", "CONTACT_US", "GET_OFFER", "SIGN_UP", "LIKE_PAGE",
+                "WHATSAPP_MESSAGE", "MESSAGE_PAGE"
+            ]]
+        }
+        for category, ctas in cta_categories.items():
             st.subheader(f"🔘 {category}")
-            
-            # Mostrar em colunas para melhor visualização
             cols = st.columns(3)
             for i, cta in enumerate(ctas):
                 with cols[i % 3]:
