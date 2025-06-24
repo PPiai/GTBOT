@@ -1037,7 +1037,7 @@ def show_documentation_page():
         Os botões de Call to Action orientam os usuários sobre qual ação tomar após ver seu anúncio.
         """)
         
-        # Mostrar CTAs por categoria
+        # Mostrar CTAs por categorias
         cta_categories = {
             "E-commerce": ["BUY_NOW", "SHOP_NOW", "ADD_TO_CART", "ORDER_NOW"],
             "Engajamento": ["LEARN_MORE", "CONTACT_US", "GET_OFFER", "SIGN_UP", "LIKE_PAGE"],
