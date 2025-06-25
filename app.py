@@ -689,12 +689,6 @@ def show_create_campaigns_page():
             for i in range(ad_quantity):
                 destination_link = st.text_input(f"Link de Destino {i+1}", placeholder="https://exemplo.com",key=f"destination_link_{i}")
                 destination_links.append(destination_link)                    
-
-                ad_name = st.text_input(
-                    f"Nome do Anúncio {i+1}", 
-                    placeholder="Digite o Nome do Anúncio", 
-                    key=f"ad_name{i}"
-                )
                 
 
         
