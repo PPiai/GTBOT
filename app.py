@@ -206,7 +206,6 @@ contas = pd.DataFrame([
     {'nome_cliente': 'Bahls Odontologia', 'conta_id': '341929899811752', 'page_id': 134184147276805},
     {'nome_cliente': 'Bawer Motores', 'conta_id': '346860261810268', 'page_id': 103665665224727},
     {'nome_cliente': 'Biovit', 'conta_id': '3896030874057266', 'page_id': ""},
-    {'nome_cliente': 'Brasil Piscis', 'conta_id': '458704915937220', 'page_id': ""},
     {'nome_cliente': 'CSS Log', 'conta_id': '220492102569024', 'page_id': 199624250106007},
     {'nome_cliente': 'CTC', 'conta_id': '860506788095972', 'page_id': 1795514953860843},
     {'nome_cliente': 'Café com Leite', 'conta_id': '733072060715959', 'page_id': 1647716382217687},
@@ -273,7 +272,8 @@ contas = pd.DataFrame([
     {'nome_cliente': 'Vivacril', 'conta_id': '330431722463892', 'page_id': 104811258703874},
     {'nome_cliente': 'Vogel', 'conta_id': '921923696764459', 'page_id': 107335274129706},
     {'nome_cliente': 'Wave Solutions', 'conta_id': '1051202479011920', 'page_id': 102622741998288},
-    {'nome_cliente': 'Zatta', 'conta_id': '656032961789593', 'page_id': 265063026905654}
+    {'nome_cliente': 'Zatta', 'conta_id': '656032961789593', 'page_id': 265063026905654},
+    {'nome_cliente': 'Agro Appec', 'conta_id': '1934432050708596', 'page_id': 725785810608279}
 ])
 
 # Initialize session state variables if they don't exist
