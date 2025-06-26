@@ -261,7 +261,7 @@ contas = pd.DataFrame([
     {'nome_cliente': 'Sartori Auto Peças', 'conta_id': '616436801130224', 'page_id': ""},
     {'nome_cliente': 'SmartX', 'conta_id': '679012503781785', 'page_id': 119999527860630},
     {'nome_cliente': 'Stone Mall', 'conta_id': '531409504089794', 'page_id': 417879178590331},
-    {'nome_cliente': 'Supranet', 'conta_id': '422110711745409', 'page_id': ""},
+    {'nome_cliente': 'Supranet', 'conta_id': '422110711745409', 'page_id': 2660230607327771},
     {'nome_cliente': 'Suruka', 'conta_id': '694252122331708', 'page_id': ""},
     {'nome_cliente': 'Sérgio Calçados', 'conta_id': '1145544443248370', 'page_id': 113881887194677},
     {'nome_cliente': 'Trisul', 'conta_id': '496159270236236', 'page_id': ""},
