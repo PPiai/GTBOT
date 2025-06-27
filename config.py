@@ -10,11 +10,11 @@ Todas as listas e mapeamentos estão aqui para facilitar manutenção
 
 # OBJETIVOS DE CAMPANHA (Padrão ODAX Focado)
 CAMPAIGN_OBJECTIVES = [
-    "OUTCOME_AWARENESS",       # Reconhecimento
-    "OUTCOME_TRAFFIC",         # Tráfego
-    "OUTCOME_ENGAGEMENT",      # Engajamento
-    "OUTCOME_LEADS",           # Leads (Cadastros)
-    "OUTCOME_SALES"            # Vendas (para site)
+    "OUTCOME_AWARENESS",   # Reconhecimento
+    "OUTCOME_TRAFFIC",       # Tráfego
+    "OUTCOME_ENGAGEMENT",    # Engajamento
+    "OUTCOME_LEADS",         # Leads (Cadastros)
+    "OUTCOME_SALES"          # Vendas
 ]
 
 # Objetivos legados mais comuns.
@@ -26,24 +26,37 @@ LEGACY_OBJECTIVES = [
 
 # METAS DE OTIMIZAÇÃO (Focadas no Padrão Web)
 OPTIMIZATION_GOALS = [
+    "NONE",
+    "APP_INSTALLS",
     "AD_RECALL_LIFT",
-    "CONVERSATIONS",
-    "CONVERSION_LEADS",
-    "CONVERSIONS",
     "ENGAGED_USERS",
     "EVENT_RESPONSES",
     "IMPRESSIONS",
-    "LANDING_PAGE_VIEWS",
     "LEAD_GENERATION",
+    "QUALITY_LEAD",
     "LINK_CLICKS",
     "OFFSITE_CONVERSIONS",
     "PAGE_LIKES",
     "POST_ENGAGEMENT",
-    "QUALITY_LEAD",
+    "QUALITY_CALL",
     "REACH",
-    "REMINDERS_SET",
+    "LANDING_PAGE_VIEWS",
+    "VISIT_INSTAGRAM_PROFILE",
+    "VALUE",
     "THRUPLAY",
-    "VALUE"
+    "DERIVED_EVENTS",
+    "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
+    "CONVERSATIONS",
+    "IN_APP_VALUE",
+    "MESSAGING_PURCHASE_CONVERSION",
+    "SUBSCRIBERS",
+    "REMINDERS_SET",
+    "MEANINGFUL_CALL_ATTEMPT",
+    "PROFILE_VISIT",
+    "PROFILE_AND_PAGE_ENGAGEMENT",
+    "ADVERTISER_SILOED_VALUE",
+    "AUTOMATIC_OBJECTIVE",
+    "MESSAGING_APPOINTMENT_CONVERSION"
 ]
 
 # EVENTOS DE COBRANÇA (Ad Set Level)
@@ -88,18 +101,17 @@ DESTINATION_TYPES = [
 # ========================================================================
 
 # Mapeamento Objetivo ODAX → Otimizações Válidas
+# Mapeamento Objetivo ODAX → Otimizações Válidas (Versão Corrigida)
 OBJECTIVE_OPTIMIZATION_MAP = {
     "OUTCOME_AWARENESS": ["REACH", "IMPRESSIONS", "AD_RECALL_LIFT", "THRUPLAY"],
     "OUTCOME_TRAFFIC": ["LINK_CLICKS", "LANDING_PAGE_VIEWS", "IMPRESSIONS", "REACH"],
-    "OUTCOME_ENGAGEMENT": [
-        "POST_ENGAGEMENT", "PAGE_LIKES", "EVENT_RESPONSES", "CONVERSATIONS",
-        "THRUPLAY", "REACH", "IMPRESSIONS"
-    ],
-    "OUTCOME_LEADS": ["LEAD_GENERATION", "CONVERSIONS", "CONVERSATION_LEADS", "QUALITY_LEAD", "IMPRESSIONS"],
-    "OUTCOME_SALES": ["CONVERSIONS", "LINK_CLICKS", "LANDING_PAGE_VIEWS", "VALUE", "IMPRESSIONS"]
+    "OUTCOME_ENGAGEMENT": ["POST_ENGAGEMENT", "CONVERSATIONS", "THRUPLAY", "PAGE_LIKES", "EVENT_RESPONSES", "REACH", "IMPRESSIONS"],
+    "OUTCOME_LEADS": ["LEAD_GENERATION", "CONVERSIONS", "QUALITY_LEAD", "CONVERSATIONS"],
+    "OUTCOME_SALES": ["OFFSITE_CONVERSIONS", "CONVERSIONS", "VALUE", "LINK_CLICKS", "LANDING_PAGE_VIEWS"]
 }
 
 # Mapeamento Otimização → Cobrança Válida (Recomendada)
+# Mapeamento Otimização → Cobrança Válida (Recomendada - sem alterações)
 OPTIMIZATION_BILLING_MAP = {
     "REACH": "IMPRESSIONS",
     "IMPRESSIONS": "IMPRESSIONS",
@@ -108,19 +120,22 @@ OPTIMIZATION_BILLING_MAP = {
     "LANDING_PAGE_VIEWS": "IMPRESSIONS",
     "POST_ENGAGEMENT": "IMPRESSIONS",
     "PAGE_LIKES": "IMPRESSIONS",
+    "OFFSITE_CONVERSIONS": "IMPRESSIONS",
     "CONVERSIONS": "IMPRESSIONS",
     "VALUE": "IMPRESSIONS",
     "LEAD_GENERATION": "IMPRESSIONS",
-    "QUALITY_LEAD": "IMPRESSIONS"
+    "QUALITY_LEAD": "IMPRESSIONS",
+    "CONVERSATIONS": "IMPRESSIONS"
 }
 
 # NOVO MAPA: Mapeamento Objetivo ODAX → Destinos Válidos
+# NOVO MAPA: Mapeamento Objetivo ODAX → Destinos Válidos (Versão Corrigida)
 OBJECTIVE_DESTINATION_MAP = {
     "OUTCOME_AWARENESS": ["WEBSITE", "FACEBOOK"],
-    "OUTCOME_TRAFFIC": ["WEBSITE", "MESSENGER", "WHATSAPP", "MESSAGING_MESSENGER", "MESSAGING_WHATSAPP"],
-    "OUTCOME_ENGAGEMENT": ["FACEBOOK", "WEBSITE", "MESSENGER", "MESSAGING_MESSENGER"],
-    "OUTCOME_LEADS": ["WEBSITE", "ON_AD", "MESSENGER", "MESSAGING_MESSENGER"],
-    "OUTCOME_SALES": ["WEBSITE"]
+    "OUTCOME_TRAFFIC": ["WEBSITE", "MESSENGER", "WHATSAPP", "PHONE_CALL"],
+    "OUTCOME_ENGAGEMENT": ["ON_POST", "MESSENGER", "WHATSAPP", "WEBSITE", "ON_EVENT", "ON_PAGE", "ON_VIDEO"],
+    "OUTCOME_LEADS": ["WEBSITE", "ON_AD", "MESSENGER", "PHONE_CALL"],
+    "OUTCOME_SALES": ["WEBSITE", "APP", "MESSENGER", "PHONE_CALL"]
 }
 
 # ========================================================================
@@ -132,7 +147,7 @@ CAMPAIGN_TEMPLATES = {
         "Tipo de Campanha": "CBO",
         "Objetivo da Campanha": "OUTCOME_SALES",
         "Status da Campanha": "PAUSED",
-        "Tipo de Otimização": "CONVERSIONS",
+        "Tipo de Otimização": "OFFSITE_CONVERSIONS",
         "Cobrança do Adset": "IMPRESSIONS",
         "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
         "Tipo de Anúncio": "Imagem",
