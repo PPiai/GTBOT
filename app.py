@@ -152,6 +152,7 @@ st.markdown("""
         margin-bottom: 1rem !important;
     }
     /* Sidebar título e divisores */
+    
     .st-emotion-cache-1v0mbdj, .st-emotion-cache-1avcm0n {
         color: #111 !important;
     }
@@ -187,6 +188,9 @@ st.markdown("""
     div[data-baseweb="tab"][aria-disabled="true"] {
         color: #bbb !important;
         background: #f5f5f5 !important;
+    }
+    .st-emotion-cache-1weic72 {
+        color: black !important;
     }
 </style>
 """, unsafe_allow_html=True)
