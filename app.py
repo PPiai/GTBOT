@@ -199,6 +199,14 @@ st.markdown("""
         color: black !important;
         font-color: black !important;
         }
+    .st-emotion-cache-1ort0lt {
+        color: black !important;
+        font-color: black !important;
+        }
+    .st-emotion-cache-1w7qfeb {
+        color: black !important;
+        font-color: black !important;
+        }
 </style>
 """, unsafe_allow_html=True)
 
