@@ -192,6 +192,9 @@ st.markdown("""
     .st-emotion-cache-1weic72 {
         color: black !important;
     }
+    .stButton {
+        font-color: black !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
