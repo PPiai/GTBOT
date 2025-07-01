@@ -215,6 +215,7 @@ contas = pd.DataFrame([
     {'nome_cliente': 'AJL', 'conta_id': '5557603504330426', 'page_id': ""},
     {'nome_cliente': 'Absoluta Incorporação', 'conta_id': '743422994203639', 'page_id': 109493203959221},
     {'nome_cliente': 'Adapter Sistemas', 'conta_id': '413912314603205', 'page_id': ""},
+    {'nome_cliente': 'Agro Appec', 'conta_id': '1934432050708596', 'page_id': 725785810608279},
     {'nome_cliente': 'Agromann', 'conta_id': '764715671633746', 'page_id': ""},
     {'nome_cliente': 'Aguia de Ouro', 'conta_id': '930138122661830', 'page_id': ""},
     {'nome_cliente': 'Alcance', 'conta_id': '2904536849786560', 'page_id': 1271577962865774},
@@ -241,6 +242,7 @@ contas = pd.DataFrame([
     {'nome_cliente': 'Extinseto', 'conta_id': '3461207023864', 'page_id': 270989276256375},
     {'nome_cliente': 'FOR-TY STORE', 'conta_id': '7767604866623167', 'page_id': 278960501975649},
     {'nome_cliente': 'Ferragens Floresta', 'conta_id': '199516851165071', 'page_id': ""},
+    {'nome_cliente': 'FF Engenharia', 'conta_id': '715445144213215', 'page_id': 697035260158757},
     {'nome_cliente': 'GTL', 'conta_id': '602220500784998', 'page_id': ""},
     {'nome_cliente': 'Gloria Rabello', 'conta_id': '1503339850472458', 'page_id': ""},
     {'nome_cliente': 'HS Gold', 'conta_id': '905719624940336', 'page_id': 363168754077448},
@@ -291,8 +293,7 @@ contas = pd.DataFrame([
     {'nome_cliente': 'Vivacril', 'conta_id': '330431722463892', 'page_id': 104811258703874},
     {'nome_cliente': 'Vogel', 'conta_id': '921923696764459', 'page_id': 107335274129706},
     {'nome_cliente': 'Wave Solutions', 'conta_id': '1051202479011920', 'page_id': 102622741998288},
-    {'nome_cliente': 'Zatta', 'conta_id': '656032961789593', 'page_id': 265063026905654},
-    {'nome_cliente': 'Agro Appec', 'conta_id': '1934432050708596', 'page_id': 725785810608279}
+    {'nome_cliente': 'Zatta', 'conta_id': '656032961789593', 'page_id': 265063026905654}
 ])
 
 # Initialize session state variables if they don't exist
