@@ -91,9 +91,8 @@ DESTINATION_TYPES = [
     "MESSENGER",
     "WHATSAPP",
     "FACEBOOK",
-    "ON_AD", # Para Formulários Instantâneos
     "MESSAGING_MESSENGER",
-    "MESSAGING_WHATSAPP"
+    "MESSAGING_MESSENGER_WHATSAPP"
 ]
 
 # ========================================================================
@@ -132,10 +131,10 @@ OPTIMIZATION_BILLING_MAP = {
 # NOVO MAPA: Mapeamento Objetivo ODAX → Destinos Válidos (Versão Corrigida)
 OBJECTIVE_DESTINATION_MAP = {
     "OUTCOME_AWARENESS": ["WEBSITE", "FACEBOOK"],
-    "OUTCOME_TRAFFIC": ["WEBSITE", "MESSENGER", "WHATSAPP", "PHONE_CALL"],
-    "OUTCOME_ENGAGEMENT": ["ON_POST", "MESSENGER", "WHATSAPP", "WEBSITE", "ON_EVENT", "ON_PAGE", "ON_VIDEO"],
-    "OUTCOME_LEADS": ["WEBSITE", "ON_AD", "MESSENGER", "PHONE_CALL"],
-    "OUTCOME_SALES": ["WEBSITE", "APP", "MESSENGER", "PHONE_CALL"]
+    "OUTCOME_TRAFFIC": ["WEBSITE", "MESSENGER", "WHATSAPP"],
+    "OUTCOME_ENGAGEMENT": ["MESSENGER", "WHATSAPP", "WEBSITE"],
+    "OUTCOME_LEADS": ["WEBSITE", "MESSENGER"],
+    "OUTCOME_SALES": ["WEBSITE", "MESSENGER"]
 }
 
 # ========================================================================
@@ -164,7 +163,7 @@ CAMPAIGN_TEMPLATES = {
         "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
         "Tipo de Anúncio": "Video",
         "CTA": "GET_QUOTE",
-        "Tipo de Destino": "ON_AD", # Usa o Formulário Instantâneo
+        "Tipo de Destino": "WEBSITE", # Usa o Formulário Instantâneo
         "Nota": "Utiliza Formulário Instantâneo da Meta. Para máxima qualidade, integre seu CRM."
     },
     "Tráfego para Site": {
@@ -187,7 +186,7 @@ CAMPAIGN_TEMPLATES = {
         "Estratégia de Lance": "LOWEST_COST_WITHOUT_CAP",
         "Tipo de Anúncio": "Imagem",
         "CTA": "WHATSAPP_MESSAGE",
-        "Tipo de Destino": "MESSAGING_WHATSAPP"
+        "Tipo de Destino": "WHATSAPP"
     }
 }
 
@@ -256,7 +255,7 @@ def validate_campaign_combination(objective, optimization, billing, bid_strategy
         return (False, f"FALHA DE LÓGICA: A estratégia de lance 'LOWEST_COST_WITH_MIN_ROAS' requer otimização por 'VALUE' ou 'CONVERSIONS'.")
 
     # 5b. CTA de WhatsApp deve ter um destino de WhatsApp
-    if cta == "WHATSAPP_MESSAGE" and destination not in ["WHATSAPP", "MESSAGING_WHATSAPP"]:
+    if cta == "WHATSAPP_MESSAGE" and destination not in ["WHATSAPP", "MESSAGING_MESSENGER_WHATSAPP"]:
         return (False, f"FALHA DE LÓGICA: O CTA 'WHATSAPP_MESSAGE' deve ser usado com um destino de WhatsApp.")
 
     # Se todas as checagens passarem
