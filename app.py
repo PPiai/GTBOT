@@ -210,6 +210,7 @@ contas = pd.DataFrame([
     {'nome_cliente': 'Absoluta Incorporação', 'conta_id': '743422994203639', 'page_id': 109493203959221},
     {'nome_cliente': 'Adapter Sistemas', 'conta_id': '413912314603205', 'page_id': ""},
     {'nome_cliente': 'Agromann', 'conta_id': '764715671633746', 'page_id': ""},
+    {'nome_cliente': 'Agro Appec', 'conta_id': '1934432050708596', 'page_id': 725785810608279},
     {'nome_cliente': 'Aguia de Ouro', 'conta_id': '930138122661830', 'page_id': ""},
     {'nome_cliente': 'Alcance', 'conta_id': '2904536849786560', 'page_id': 1271577962865774},
     {'nome_cliente': 'Alcance B2B', 'conta_id': '2904536849786560', 'page_id': 1271577962865774},
@@ -230,6 +231,7 @@ contas = pd.DataFrame([
     {'nome_cliente': 'Day Hospital', 'conta_id': '1663531577433280', 'page_id': 249248981611874},
     {'nome_cliente': 'Dziabas', 'conta_id': '2281392792260986', 'page_id': 481551325036520},
     {'nome_cliente': 'Enmed', 'conta_id': '1775072306366660', 'page_id': ""},
+    {'nome_cliente': 'Escola Wolf Maya', 'conta_id': '729132251425755', 'page_id': 112895868078037},
     {'nome_cliente': 'Evolution Signs', 'conta_id': '218764335949405', 'page_id': 418238448245945},
     {'nome_cliente': 'Exohair', 'conta_id': '922812376352170', 'page_id': ""},
     {'nome_cliente': 'Extinseto', 'conta_id': '3461207023864', 'page_id': 270989276256375},
@@ -285,8 +287,7 @@ contas = pd.DataFrame([
     {'nome_cliente': 'Vivacril', 'conta_id': '330431722463892', 'page_id': 104811258703874},
     {'nome_cliente': 'Vogel', 'conta_id': '921923696764459', 'page_id': 107335274129706},
     {'nome_cliente': 'Wave Solutions', 'conta_id': '1051202479011920', 'page_id': 102622741998288},
-    {'nome_cliente': 'Zatta', 'conta_id': '656032961789593', 'page_id': 265063026905654},
-    {'nome_cliente': 'Agro Appec', 'conta_id': '1934432050708596', 'page_id': 725785810608279}
+    {'nome_cliente': 'Zatta', 'conta_id': '656032961789593', 'page_id': 265063026905654}
 ])
 
 # Initialize session state variables if they don't exist
